@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: MyString
+  vote_date: 2016-09-02
+
+two:
+  data: MyString
+  vote_date: 2016-09-02

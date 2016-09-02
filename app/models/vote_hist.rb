@@ -1,0 +1,2 @@
+class VoteHist < ApplicationRecord
+end
