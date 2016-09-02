@@ -27,13 +27,11 @@ $(document).ready(function() {
 } );
 
 analyze = function(id) {
-  console.log("analyze", id);
   $.ajax({
     url: "/api_get_item/"+id,
     cache: true
   }).done(function(res) {
     res = JSON.parse(res);
-    console.log(res);
     $("#selected_motion").html(res.motion_ch)
     var t = $('#vote_list').DataTable();
     t.clear().draw();
