@@ -66,7 +66,6 @@ class VotesController < ApplicationController
       hash = get_item(item.id)
       @result.push(hash)
     end
-    @result.sort_by {|_key, value| value}
   end
 
   def get_item(id)
