@@ -12,8 +12,8 @@
           <% @result.each do |item| %>
             <tr onclick="var item= '<%=item['id']%>';analyze(item);">
               <td><%= item["date"] %></td>
-              <td><%= item["motion_ch"] %></td>
-              <td><%= item["mover_ch"] %></td>
+              <td><%= item[:motion_ch] %></td>
+              <td><%= item[:mover_ch] %></td>
             </tr>
           <% end %>
         </tbody>

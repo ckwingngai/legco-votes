@@ -28,9 +28,20 @@ require 'net/http'
 
 class VotesController < ApplicationController
 
-  def insert_db(obj)
-    vote = VoteHist.create(obj)
-    vote.save
+  def insert_db(vote)
+    unless vote["motion_ch"].nil?
+      obj = {
+        data: {
+          vote_date: vote["vote_date"],
+          motion_ch: vote["motion_ch"],
+          mover_ch: vote["mover_ch"],
+          individual_votes: vote["individual_votes"]
+        },
+        vote_date: vote["vote_date"]
+      }
+      vote = VoteHist.create(obj)
+      vote.save
+    end
   end
 
   def import
@@ -48,11 +59,11 @@ class VotesController < ApplicationController
       if votes["vote"].is_a? Array
         puts "array"
         votes["vote"].each do |vote|
-          insert_db({data: vote, vote_date: vote["vote_date"]})
+          insert_db(vote)
         end
       else
         puts "one"
-        insert_db({data: votes, vote_date: votes["vote_date"]})
+        insert_db(votes)
       end
     end
 
@@ -64,6 +75,7 @@ class VotesController < ApplicationController
     @data.each do |item|
       puts item.id
       hash = get_item(item.id)
+      puts hash
       @result.push(hash)
     end
   end
@@ -72,7 +84,7 @@ class VotesController < ApplicationController
     data = VoteHist.where(:id => id).first
     hash = eval(data.data)
     hash["id"] = id
-    temp_date = hash["vote_date"].split("/")
+    temp_date = hash[:vote_date].split("/")
     hash["date"] = "#{temp_date[2]}-#{temp_date[1]}-#{temp_date[0]}"
     return hash
   end
