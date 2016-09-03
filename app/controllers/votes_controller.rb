@@ -62,11 +62,23 @@ class VotesController < ApplicationController
       votes = data["legcohk_vote"]["meeting"]
       if votes["vote"].is_a? Array 
         puts "array"
-        insert_db(votes["vote"][pos])
+        if pos === "all"
+          votes["vote"].each do |vote|
+            insert_db(vote)
+          end
+        else
+          insert_db(votes["vote"][pos])
+        end
       else
         puts "one"
         insert_db(votes["vote"])
       end
+      render :plain => "#{item} with #{pos} is imported"
+  end
+
+  def destroy
+    VoteHist.destroy(params[:id])
+    render :plain => "#{params[:id]} is deleted"
   end
 
   def import
