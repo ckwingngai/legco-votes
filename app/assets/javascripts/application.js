@@ -16,6 +16,8 @@
 //= require moment
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-modal
+//= require bootstrap-modalmanager
 
 $(document).ready(function() {
   $.fn.dataTable.moment( 'HH:mm MMM D, YY' );
@@ -23,7 +25,15 @@ $(document).ready(function() {
     $('#motion_list').DataTable({
       "order": [[ 0, "desc" ]]
     });
-    $('#vote_list').DataTable();
+    $('#vote_list').DataTable({"pageLength": 5 });
+
+    $('#myModal').modal();
+
+    $(".modal-trigger").click(function(event) {
+      console.log(event.target);
+      console.log(event.target.getAttribute('data-id'));
+      analyze(event.target.getAttribute('data-id'));
+    });
 } );
 
 analyze = function(id) {
@@ -32,7 +42,8 @@ analyze = function(id) {
     cache: true
   }).done(function(res) {
     res = JSON.parse(res);
-    $("#selected_motion").html(res.motion_ch)
+    console.log(res);
+    $("#myModal .modal-title").html(res.motion_ch);
     var t = $('#vote_list').DataTable();
     t.clear().draw();
     res.individual_votes.member.forEach(function(item) {

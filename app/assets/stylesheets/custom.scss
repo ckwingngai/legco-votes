@@ -4,7 +4,6 @@
 /* universal */
 
 body {
-  font-size: 25px;
   padding-top: 60px;
 }
 
@@ -71,5 +70,9 @@ p {
 
 table th {
   width: auto !important;
+  cursor: pointer;
+}
+
+table tr {
   cursor: pointer;
 }

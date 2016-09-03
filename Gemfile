@@ -56,3 +56,5 @@ gem 'bootstrap-sass', '3.3.6'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 
 gem 'momentjs-rails'
+
+gem 'bootstrap-modal-rails'
