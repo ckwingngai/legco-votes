@@ -27,11 +27,7 @@ $(document).ready(function() {
     });
     $('#vote_list').DataTable({"pageLength": 5 });
 
-    $('#myModal').modal();
-
     $(".modal-trigger").click(function(event) {
-      console.log(event.target);
-      console.log(event.target.getAttribute('data-id'));
       analyze(event.target.getAttribute('data-id'));
     });
 } );
@@ -42,7 +38,6 @@ analyze = function(id) {
     cache: true
   }).done(function(res) {
     res = JSON.parse(res);
-    console.log(res);
     $("#myModal .modal-title").html(res.motion_ch);
     var t = $('#vote_list').DataTable();
     t.clear().draw();
