@@ -67,7 +67,7 @@ class VotesController < ApplicationController
             insert_db(vote)
           end
         else
-          insert_db(votes["vote"][pos])
+          insert_db(votes["vote"][pos.to_i])
         end
       else
         puts "one"
