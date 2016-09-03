@@ -169,7 +169,7 @@ class VotesController < ApplicationController
     render :plain => "#{params[:id]} is deleted"
   end
 
-  def destory_all
+  def destroy_all
     VoteHist.destroy_all
     render :plain => "Destroy all data"
   end
