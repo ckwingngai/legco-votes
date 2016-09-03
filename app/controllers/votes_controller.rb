@@ -134,7 +134,8 @@ class VotesController < ApplicationController
   end
 
   def import_item
-    url = "http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/" + params[:date] + ".xml"
+    url = "http://www.legco.gov.hk/yr#{params[:year]}/chinese/counmtg/voting/#{params[:date]}.xml"
+    puts url
     handle_import_item(url, params[:pos])
   end
 
