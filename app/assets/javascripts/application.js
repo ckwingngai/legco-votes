@@ -29,7 +29,7 @@ $(document).ready(function() {
 
     $(".modal-trigger").click(function(event) {
       $("#myModal .modal-title").html("Loading...");
-      t.clear().draw();
+      $('#vote_list').DataTable().clear().draw();
       analyze(event.target.getAttribute('data-id'));
     });
 } );
@@ -40,7 +40,7 @@ analyze = function(id) {
     cache: true
   }).done(function(res) {
     res = JSON.parse(res);
-    $("#myModal .modal-title").html(res.motion_ch);
+    $("#myModal .modal-title").html(res.motion_ch + " (" + res.vote_summary.overall.result + ")");
     var t = $('#vote_list').DataTable();
     t.clear().draw();
     res.individual_votes.member.forEach(function(item) {

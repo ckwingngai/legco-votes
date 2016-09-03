@@ -46,7 +46,6 @@ $arr = {
   'http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/cm_vote_20141210.xml',
   'http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/cm_vote_20141203.xml',
   'http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/cm_vote_20141126.xml',
-  'http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/cm_vote_20141120.xml',
   'http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/cm_vote_20141112.xml',
   'http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/cm_vote_20141105.xml',
   'http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/cm_vote_20141029.xml',
@@ -124,6 +123,7 @@ class VotesController < ApplicationController
           vote_date: vote["vote_date"],
           motion_ch: vote["motion_ch"],
           mover_ch: vote["mover_ch"],
+          vote_summary: vote["vote_summary"],
           individual_votes: vote["individual_votes"]
         },
         vote_date: vote["vote_date"]
@@ -214,6 +214,8 @@ class VotesController < ApplicationController
     hash["id"] = id
     temp_date = hash[:vote_date].split("/")
     hash["date"] = "#{temp_date[2]}-#{temp_date[1]}-#{temp_date[0]}"
+    hash["result"] = hash[:vote_summary]["overall"]["result"]
+    puts hash
     return hash
   end
 

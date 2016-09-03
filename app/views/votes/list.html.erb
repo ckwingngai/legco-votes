@@ -6,6 +6,7 @@
             <th>日期</th>
             <th>動議</th>
             <th>動議人</th>
+            <th>結果</th>
           </tr>
         </thead>
         <tbody>
@@ -14,6 +15,7 @@
               <td data-id='<%=item['id']%>'><%= item["date"] %></td>
               <td data-id='<%=item['id']%>'><%= item[:motion_ch] %></td>
               <td data-id='<%=item['id']%>'><%= item[:mover_ch] %></td>
+              <td data-id='<%=item['id']%>'><%= item["result"] %></td>
             </tr>
           <% end %>
         </tbody>
