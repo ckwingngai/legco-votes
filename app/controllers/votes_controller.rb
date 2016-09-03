@@ -44,6 +44,31 @@ class VotesController < ApplicationController
     end
   end
 
+  def import_item
+    url = "http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/" + params[:date] + ".xml"
+    puts url 
+    handle_import_item(url, params[:pos])
+  end
+
+  def handle_import_item(item, pos)
+      url = URI.parse(item)
+      req = Net::HTTP::Get.new(url.to_s)
+      res = Net::HTTP.start(url.host, url.port) {|http|
+        http.request(req)
+      }
+      json = Hash.from_xml(res.body).to_json
+      data = JSON.parse(json)
+
+      votes = data["legcohk_vote"]["meeting"]
+      if votes["vote"].is_a? Array 
+        puts "array"
+        insert_db(votes["vote"][pos])
+      else
+        puts "one"
+        insert_db(votes["vote"])
+      end
+  end
+
   def import
 
     $arr.each do |item|
