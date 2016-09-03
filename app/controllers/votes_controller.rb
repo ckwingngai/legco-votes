@@ -59,27 +59,31 @@ class VotesController < ApplicationController
       json = Hash.from_xml(res.body).to_json
       data = JSON.parse(json)
 
-      puts data
-      # votes = data["legcohk_vote"]["meeting"]
-      # if votes["vote"].is_a? Array 
-      #   puts "array"
-      #   if pos === "all"
-      #     votes["vote"].each do |vote|
-      #       insert_db(vote)
-      #     end
-      #   else
-      #     insert_db(votes["vote"][pos.to_i])
-      #   end
-      # else
-      #   puts "one"
-      #   insert_db(votes["vote"])
-      # end
+      votes = data["legcohk_vote"]["meeting"]
+      if votes["vote"].is_a? Array 
+        puts "array"
+        if pos === "all"
+          votes["vote"].each do |vote|
+            insert_db(vote)
+          end
+        else
+          insert_db(votes["vote"][pos.to_i])
+        end
+      else
+        puts "one"
+        insert_db(votes["vote"])
+      end
       render :plain => "#{item} with #{pos} is imported"
   end
 
   def destroy
     VoteHist.destroy(params[:id])
     render :plain => "#{params[:id]} is deleted"
+  end
+
+  def destory_all
+    VoteHist.destroy_all
+    render :plain => "Destroy all data"
   end
 
   def import
