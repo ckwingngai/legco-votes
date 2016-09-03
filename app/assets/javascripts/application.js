@@ -28,6 +28,8 @@ $(document).ready(function() {
     $('#vote_list').DataTable({"pageLength": 5 });
 
     $(".modal-trigger").click(function(event) {
+      $("#myModal .modal-title").html("Loading...");
+      t.clear().draw();
       analyze(event.target.getAttribute('data-id'));
     });
 } );
