@@ -45,7 +45,7 @@ class VotesController < ApplicationController
   end
 
   def import_item
-    url = "http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/" + params[:date] + ".xml"
+    url = "http://www.legco.gov.hk/yr14-15/chinese/counmtg/voting/" + params[:date] + ".xml"
     puts url 
     handle_import_item(url, params[:pos])
   end
@@ -59,20 +59,21 @@ class VotesController < ApplicationController
       json = Hash.from_xml(res.body).to_json
       data = JSON.parse(json)
 
-      votes = data["legcohk_vote"]["meeting"]
-      if votes["vote"].is_a? Array 
-        puts "array"
-        if pos === "all"
-          votes["vote"].each do |vote|
-            insert_db(vote)
-          end
-        else
-          insert_db(votes["vote"][pos.to_i])
-        end
-      else
-        puts "one"
-        insert_db(votes["vote"])
-      end
+      puts data
+      # votes = data["legcohk_vote"]["meeting"]
+      # if votes["vote"].is_a? Array 
+      #   puts "array"
+      #   if pos === "all"
+      #     votes["vote"].each do |vote|
+      #       insert_db(vote)
+      #     end
+      #   else
+      #     insert_db(votes["vote"][pos.to_i])
+      #   end
+      # else
+      #   puts "one"
+      #   insert_db(votes["vote"])
+      # end
       render :plain => "#{item} with #{pos} is imported"
   end
 
