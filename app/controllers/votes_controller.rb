@@ -8,7 +8,7 @@ $arr = {
     'http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/cm_vote_20160601.xml',
     'http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/cm_vote_20160525.xml',
     'http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/cm_vote_20160518.xml',
-    'http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/cm_vote_20160511.xml',
+    # 'http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/cm_vote_20160511.xml',
     'http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/cm_vote_20160420.xml',
     'http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/cm_vote_20160316.xml',
     'http://www.legco.gov.hk/yr15-16/chinese/counmtg/voting/cm_vote_20160217.xml',
